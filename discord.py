@@ -1,4 +1,6 @@
 from pypresence import Presence
+import time
+import math
 
 class Discord:
     def __init__(self, id):
@@ -18,10 +20,10 @@ class Discord:
         print("Changing track to: " + track.track + " by " + track.artist + "(" + track.artist.lower().replace(' ', '_') + ")")
         self.cleared = False
         self.rpc.update(
-            state="By " + track.artist,
-            details=track.track,
-            start=int(track.start),
-            large_image=track.artist.lower().replace(' ', '_'),
-            large_text="Apple Music",
-            small_image="logo",
-            small_text="github.com/leahlundqvist")
+            state="by " + track.artist,
+            details=track.track + "  ", # discord wants at least 2 characters - add invisible chars!
+            start=time.time()-math.ceil(track.position),
+            large_image="logo",
+            large_text="Apple Music")
+            #small_image="logo",
+            #small_text="github.com/leahlundqvist")
