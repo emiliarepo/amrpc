@@ -11,13 +11,14 @@ previous = 0
 def update(current):
     track = getPlaying()
 
+    global previous
     if track == False:
+        previous = 0
         client.clear()
         return current
     
     # quick and dirty way to detect if position has changed
     # idk i havent used python in years
-    global previous
     diff = abs(previous - track.position)
     previous = track.position
 
